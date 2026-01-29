@@ -1,46 +1,57 @@
-// Given an integer array nums, return true if you
-// can partition the array into two subsets such
-// that the sum of the elements in both subsets
-// is equal or false otherwise.
+// Given an integer array nums, 
+// return true if you can partition
+// the array into two subsets such 
+// that the sum of the elements in
+// both subsets is equal or false otherwise.
+
 // 1 <= nums.length <= 200
 // 1 <= nums[i] <= 100
-
 class Solution {
     public boolean canPartition(int[] nums) {
-        int n = nums.length;
+        // Calculate total sum of array
         int sum = 0;
         for (int num : nums) {
-            sum += num; 
+            sum += num;
         }
-
+        // If sum is odd, it can't be split
+        // into two equal subsets
         if (sum % 2 == 1) {
-            return false; 
+            return false;
         }
         int target = sum / 2;
-// why target+1? 
-// dp[i] represents whether a subset sum of 'i' is possible.
-// So we need indices from 0 to target → size = target + 1
+        // dp[i] = true if we can form sum i using
+        // some subset of numbers
+        // Size is target + 1 to cover sums from 
+        //0 to target (inclusive)
         boolean[] dp = new boolean[target + 1];
-// sum 0 is always possible (empty subset)
-        dp[0] = true; 
-
-// iterate through each number in nums
+        // Base case: sum 0 is always possible
+        // (empty subset)
+        dp[0] = true;
+        // Process each number once (prevents 
+        //reusing the same number)
         for (int num : nums) {
-// why go from target down to num?
-// Going backwards ensures each number is only used once (0/1 knapsack)
-            //Update all possible sums using this number
-            for (int i = target; i >= num; i--) {
-// why dp[i] = dp[i] || dp[i - num]?
-// dp[i] becomes true if:
-// 1. it was already possible before, OR
-// 2. by including 'num', we can reach sum i (dp[i-num] was true)
-                dp[i] = dp[i] || dp[i - num];
+            // Iterate backwards to ensure each 
+            //number is used at most once
+            for (int i = target; i >= 0; i--) {
+                // Check if current number can
+                // contribute to sum i
+                //num is the current number
+                //i - num is the remaining sum after
+                // using the current number num
+                if (i - num >= 0) {
+                    // dp[i] is true if:
+                    // 1) it was already possible
+                    // 2) or we can form (i - num)
+                    // and add current num
+                    dp[i] = dp[i] || dp[i - num];
+                }
             }
         }
 
- // can we form a subset with sum = target?
+        // If we can form target sum, array can be partitioned equally
         return dp[target];
     }
 }
-// Time: O(n * target)
-// Space: O(target)
+//time:O(N∗M)
+//space:O(M)
+

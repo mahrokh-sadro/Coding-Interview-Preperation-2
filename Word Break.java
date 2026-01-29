@@ -41,6 +41,13 @@ class Solution {
 
     }
 }
-//time:o(n^3)
+//time:O(n * m * k)
 //space:o(n)
+
+// n = s.length()
+// m = wordDict.size()
+// k = max length of a word in wordDict
+//dfs(s, wordDict, dp, index) is called
+//recursively with index increasing
+//from 0 → s.length().
 
