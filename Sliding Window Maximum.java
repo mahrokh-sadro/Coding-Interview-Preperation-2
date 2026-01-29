@@ -17,6 +17,8 @@ class Solution {
         int j=0;
         Deque<Integer> deque=new ArrayDeque<>();
         for(int i=0;i<n;i++){
+//removes indices that are no longer inside the current window.
+//i - k + 1 = left boundary of the current window
            while(!deque.isEmpty() && i-k+1>deque.peekFirst()){
                deque.removeFirst();
            }  
