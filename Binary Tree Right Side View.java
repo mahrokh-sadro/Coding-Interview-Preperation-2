@@ -3,10 +3,9 @@
 // right side of it, return the values
 // of the nodes you can see ordered from top to bottom.
 
-//  The number of nodes in the tree is
-//  in the range [0, 100].
+// The number of nodes in the tree is
+// in the range [0, 100].
 // -100 <= Node.val <= 100
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -29,28 +28,24 @@ class Solution {
             return list;
         }
 
-        Queue<TreeNode> que=new LinkedList<>();
-        que.add(root);
+        Queue<TreeNode> queue=new LinkedList<>();
+        queue.add(root);
 
-        while(!que.isEmpty()){
-            int size=que.size();
+        while(!queue.isEmpty()){
+            int size=queue.size();
             for(int i=0;i<size;i++){
-                TreeNode node=que.poll();
+                TreeNode node=queue.poll();
                 if(node.left!=null){
-                  que.add(node.left);
+                  queue.add(node.left);
                 }
                 if(node.right!=null){
-                  que.add(node.right);
+                  queue.add(node.right);
                 }
                 if(i==size-1){
-                   list.add(node.val);  
+                    list.add(node.val);
                 }
             }
         }
-
         return list;
     }
 }
-
-// Time: O(n) 
-// Space: O(n)
