@@ -1,10 +1,9 @@
-// Given the root of a binary tree, invert
-// the tree, and return its root.
+// Given the root of a binary tree,
+// invert the tree, and return its root.
 
-// The number of nodes in the tree is in
-// the range [0, 100].
+// The number of nodes in the tree is
+// in the range [0, 100].
 // -100 <= Node.val <= 100
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -23,7 +22,7 @@
 class Solution {
     public TreeNode invertTree(TreeNode root) {
         if(root==null){
-            return root;
+            return null;
         }
 
         TreeNode left=invertTree( root.left);
@@ -33,6 +32,6 @@ class Solution {
         return root;
     }
 }
+// Time:O(n)
+// Space:O(h)
 
-// Time:  O(n)
-// Space: O(h)   // recursion stack

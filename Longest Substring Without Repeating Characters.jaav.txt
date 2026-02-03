@@ -1,0 +1,33 @@
+// Given a string s, find the length of the
+// longest without duplicate characters.
+// 0 <= s.length <= 5 * 10^4
+// s consists of English letters, digits,
+// symbols, and spaces
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int[] freq = new int[256];
+        // freq is an array that counts how many
+        // times each character appears in
+        // the current window [l, r].
+        // Size 256 → enough to cover all
+        // ASCII characters.
+        int l=0;
+        int maxLength=0;
+        for(int r=0;r<s.length();r++){
+            freq[s.charAt(r)]++;
+            // shrink window until no duplicate
+            //l should move only when the character
+            // at r is duplicated in the window
+            //You must shrink the window gradually,
+            // not jump l to r + 1
+            while (freq[s.charAt(r)] > 1) {
+                freq[s.charAt(l)]--;
+                l++;
+            }
+            maxLength=Math.max(maxLength,r-l+1);
+        }
+        return maxLength;
+    }
+}
+// Time : O(n)
+// Space : O(1)

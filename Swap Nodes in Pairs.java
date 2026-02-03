@@ -1,12 +1,11 @@
 // Given a linked list, swap every two
 // adjacent nodes and return its head.
-// You must solve the problem without
-// modifying the values in the list's
-// nodes (i.e., only nodes themselves
-// may be changed.)
+// You must solve the problem without 
+// modifying the values in the list's 
+// nodes (i.e., only nodes themselves may be changed.)
 
-// The number of nodes in the list is
-// in the range [0, 100].
+// The number of nodes in the list
+// is in the range [0, 100].
 // 0 <= Node.val <= 100
 /**
  * Definition for singly-linked list.
@@ -20,17 +19,19 @@
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-        
+        if(head==null || head.next==null){
+            return head;
+        }
+
         ListNode tail=head;
         for(int i=0;i<2;i++){
             if(tail==null) return head;
             tail=tail.next;
         }
-        
-        ListNode newHead=reverse( head, tail);
-        head.next=swapPairs(tail);
-        return newHead;
 
+        ListNode newHead=reverse(head,tail);
+        head.next=swapPairs(tail);
+        return newHead; 
     }
 
     private ListNode reverse(ListNode head,ListNode tail){
@@ -45,5 +46,6 @@ class Solution {
         return pre;
     }
 }
-// Time:O(n)
-// Space:O(n) (recursion stack)
+
+// Time	O(n)
+// Space	O(n)
