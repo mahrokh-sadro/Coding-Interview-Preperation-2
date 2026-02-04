@@ -1,13 +1,12 @@
-// Given the root of a binary tree, return
-// the zigzag level order traversal of its
-// nodes' values. (i.e., from left to right,
-// then right to left for the next level and
-// alternate between).
+// Given the root of a binary tree, 
+// return the zigzag level order traversal
+// of its nodes' values. (i.e., from left 
+// to right, then right to left for the 
+// next level and alternate between).
 
-// The number of nodes in the tree is in the
-// range [0, 2000].
+// The number of nodes in the tree is in
+// the range [0, 2000].
 // -100 <= Node.val <= 100
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -30,35 +29,32 @@ class Solution {
             return list;
         }
 
+        Queue<TreeNode> queue=new LinkedList<>();
+        queue.add(root);
         boolean isLeftToRight=true;
-        Queue<TreeNode> que=new LinkedList<>();
-        que.add(root);
-
-        while(!que.isEmpty()){
-            int size=que.size();
-            List<Integer> level=new LinkedList<>();
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            List<Integer> sublist=new LinkedList<>();
             for(int i=0;i<size;i++){
-                TreeNode node=que.poll();
-
+                TreeNode node=queue.poll();
                 if(isLeftToRight){
-                  level.addLast(node.val);
+                   sublist.addLast(node.val);
                 }
                 else{
-                   level.addFirst(node.val); 
+                    sublist.addFirst(node.val);
                 }
-
                 if(node.left!=null){
-                   que.add(node.left); 
+                    queue.add(node.left);
                 }
                 if(node.right!=null){
-                   que.add(node.right); 
+                    queue.add(node.right);
                 }
             }
             isLeftToRight=!isLeftToRight;
-            list.add(level);
+            list.add(sublist);
         }
         return list;
     }
 }
-//time: O(n)
-//space:O(n)
+// Time	O(n)
+// Space	O(n)

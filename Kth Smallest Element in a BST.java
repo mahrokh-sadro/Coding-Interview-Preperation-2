@@ -1,10 +1,11 @@
-// Given the root of a binary search tree,
-// and an integer k, return the kth smallest
-// value (1-indexed) of all the values of
-// the nodes in the tree.
-// - The number of nodes in the tree is n.
-// - 1 <= k <= n <= 10^4
-// - 0 <= Node.val <= 10^4
+// Given the root of a binary search 
+// tree, and an integer k, return the
+// kth smallest value (1-indexed) of
+// all the values of the nodes in the tree.
+
+// The number of nodes in the tree is n.
+// 1 <= k <= n <= 10^4
+// 0 <= Node.val <= 10^4
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -21,8 +22,8 @@
  * }
  */
 class Solution {
-    int index=0;
     int value=0;
+    int index=0;
     public int kthSmallest(TreeNode root, int k) {
         dfs(root,k);
         return value;
@@ -42,6 +43,6 @@ class Solution {
         dfs(root.right,k);
     }
 }
-// Time:  O(n)   // worst case
-// Space: O(h)   // recursion stack
 
+// Time:O(n) 
+// Space:O(h) recursive stack

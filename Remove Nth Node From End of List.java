@@ -1,6 +1,7 @@
-// Given the head of a linked list, remove
-// the nth node from the end of the list
-// and return its head.
+// Given the head of a linked list,
+// remove the nth node from the end of 
+// the list and return its head.
+
 // The number of nodes in the list is sz.
 // 1 <= sz <= 30
 // 0 <= Node.val <= 100
@@ -19,22 +20,22 @@ class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy=new ListNode();
         ListNode dummyHead=dummy;
-        dummy.next=head;
 
+        dummy.next=head;
         ListNode fast=dummy;
         ListNode slow=dummy;
 
         for(int i=0;i<n;i++){
-            fast=fast.next;
+           fast=fast.next;
         }
 
         while(fast.next!=null){
             fast=fast.next;
             slow=slow.next;
         }
+
         slow.next=slow.next.next;
+
         return dummyHead.next;
     }
 }
-// Time : O(n)
-// Space : O(1)
