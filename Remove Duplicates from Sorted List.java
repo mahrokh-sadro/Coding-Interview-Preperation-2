@@ -1,13 +1,13 @@
 // Given the head of a sorted linked list,
 // delete all duplicates such that each
-// element appears only once. Return the 
+// element appears only once. Return the
 // linked list sorted as well.
+
 // The number of nodes in the list is in 
 // the range [0, 300].
 // -100 <= Node.val <= 100
 // The list is guaranteed to be sorted in
 // ascending order.
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -27,17 +27,16 @@ class Solution {
         ListNode dummy=new ListNode();
         ListNode dummyHead=dummy;
         dummy.next=head;
-
-        while(dummy.next!=null && dummy.next.next!=null){
-            if(dummy.next.val==dummy.next.next.val){
-               dummy.next.next=dummy.next.next.next;
-            }
-            else{
-                dummy=dummy.next;
-            }
+        ListNode cur=head;
+        while(cur.next!=null && dummy.next!=null){
+           if(dummy.next.val==cur.next.val){
+              dummy.next=dummy.next.next;
+           }
+           else{
+              dummy=dummy.next;
+           }
+           cur=cur.next;
         }
         return dummyHead.next;
     }
 }
-//Time: O(n)
-//Space: O(1)
